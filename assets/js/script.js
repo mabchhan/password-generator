@@ -5,63 +5,28 @@ function generatePassword() {
   // declare variable for store alpha , number, special charactor to generate password
   var lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
   var upperAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var spacialChar = "@#$%^&*()<>";
+  var spacialChar = "@#$%^&*()";
   var number = "0123456789";
 
-  // vaiable for store password
+  // variable for store all charactor for random
   var passwordString = "";
 
-  var passwordLength = prompt("How many length do you want?");
+  // variable for store password after radndom
+  var getPassword = "";
 
-  // if (passwordLength === "" || passwordLength === "null") {
-  //   return;
-  // } else if (!Number.isInteger(parseInt(passwordLength))) {
-  //   // while (!Number.isInteger(parseInt(passwordLength))) {
-  //   alert(passwordLength + " is not a Integer, Please try again!");
-  //   passwordLength = prompt("Please input number. How long do you want?");
+  // variable for store index
+  var randomNumber;
 
-  //   if (passwordLength === "" || passwordLength === "null") {
-  //     return;
-  //   } else {
-  //     while (!Number.isInteger(parseInt(passwordLength))) {
-  //       alert(passwordLength + " is not a Integer, Please try again!");
-  //       passwordLength = prompt("Please input number. How long do you want?");
-  //       // if (!(passwordLength <= 128 && passwordLength >= 8)) {
-  //       //   passwordLength = prompt("Your password should be 8 to 128 lenth.");
-  //       // }
-  //       if (passwordLength === "") return;
-  //     }
-  //     // else if (!(passwordLength <= 123 && passwordLength >= 8)) {
-  //     //   passwordLength = prompt("Your password should be 8 to 123 length.");
-  //     // } else {
-  //     //   for (var i = 0; i < passwordLength; i++) {
-  //     //     var randomNumber = Math.floor(Math.random() * lowerAlpha.length);
-  //     //     passwordString += lowerAlpha.substring(
-  //     //       randomNumber,
-  //     //       randomNumber + 1
-  //     //     );
-  //     //   }
-  //     //   return passwordString;
-  //     // }
-  //   }
-  // }
-
-  // check length of password between 8 to 128
-  while (!(passwordLength <= 128 && passwordLength >= 8)) {
-    alert("Password should be between 8 to 128 length.");
-    passwordLength = prompt(
-      "Plese input your password between 8 to 123 length."
-    );
-  }
-
-  // ask user, they want to add condition
-  var addCondition = confirm(
-    "Do you want to add Lowercase, Uppercase, Special Charactor or Number?"
-  );
   var addLower;
   var addUpper;
   var addSpecail;
   var addNumber;
+
+  // ask user, they want to add condition
+  var addCondition = confirm(
+    "You can choose criteria of password:\n- Lowercase\n- Uppercase \n- Number \n- Special Charactor \n- Length between 8 to 128"
+  );
+
   if (addCondition) {
     addLower = confirm("Do you want to add Lowercase letter");
     addUpper = confirm("Do you want to add Uppercase letter?");
@@ -83,9 +48,24 @@ function generatePassword() {
     return;
   }
 
+  console.log(passwordString);
+
+  // ask length from user
+  var passwordLength = prompt(
+    "How many length do you want for your password?\nPlease choose from 8 to 128 length."
+  );
+
+  // check length of password between 8 to 128
+  while (!(passwordLength <= 128 && passwordLength >= 8)) {
+    alert("Password should be between 8 to 128 length.");
+    passwordLength = prompt(
+      "Plese input your password between 8 to 123 length."
+    );
+  }
+
   // let regex =  /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
 
-  //  condition to check password need to contain at least what ever user select
+  // condition to check password need to contain at least one what ever user select
   var regex;
   if (addLower) {
     regex = /^(?=.*[a-z]).{8,128}$/;
@@ -126,23 +106,15 @@ function generatePassword() {
     regex = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
   }
 
-  console.log(passwordString);
-
-  console.log(passwordString.length);
-
-  var getPassword = "";
-  var randomNumber;
-
   // loop until get password criteria is true
   do
     for (var i = 0; i < passwordLength; i++) {
       randomNumber = Math.floor(Math.random() * passwordString.length);
-      // getPassword += passwordString.substring(randomNumber, randomNumber + 1);
-      getPassword += passwordString.charAt(randomNumber);
+      getPassword += passwordString.substring(randomNumber, randomNumber + 1);
+      // getPassword += passwordString.charAt(randomNumber);
     }
   while (!regex.test(getPassword));
   return getPassword;
-  // return s;
 }
 
 // Get references to the #generate element
