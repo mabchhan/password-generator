@@ -32,6 +32,18 @@ function generatePassword() {
     addUpper = confirm("Do you want to add Uppercase letter?");
     addNumber = confirm("Do you want to add Number?");
     addSpecail = confirm("Do you want to add Special Charactor?");
+    while (
+      addLower === false &&
+      addUpper === false &&
+      addNumber === false &&
+      addSpecail === false
+    ) {
+      alert("You must choose one at least.");
+      addLower = confirm("Do you want to add Lowercase letter");
+      addUpper = confirm("Do you want to add Uppercase letter?");
+      addNumber = confirm("Do you want to add Number?");
+      addSpecail = confirm("Do you want to add Special Charactor?");
+    }
     if (addLower) {
       passwordString += lowerAlpha;
     }
@@ -63,57 +75,48 @@ function generatePassword() {
     );
   }
 
-  // let regex =  /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-
   // condition to check password need to contain at least one what ever user select
-  var regex;
-  if (addLower) {
-    regex = /^(?=.*[a-z]).{8,128}$/;
-  } else if (addLower && addUpper) {
-    regex = /^(?=.*[a-z])(?=.*[A-Z]).{8,128}$/;
-  } else if (addLower && addUpper && addNumber) {
-    regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,128}$/;
-  } else if (addLower && addUpper && addSpecail) {
-    regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addLower && addUpper && addNumber && addSpecail) {
-    regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addLower && addNumber) {
-    regex = /^(?=.*[a-z])(?=.*[0-9]).{8,128}$/;
-  } else if (addLower && addNumber && addSpecail) {
-    regex =
-      /^(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addLower && addSpecail) {
-    regex =
-      /^(?=.*[a-z])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addUpper) {
-    regex = /^(?=.*[A-Z]).{8,128}$/;
-  } else if (addUpper && addNumber) {
-    regex = /^(?=.*[A-Z])(?=.*[0-9]).{8,128}$/;
-  } else if (addUpper && addSpecail) {
-    regex =
-      /^(?=.*[A-Z])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addUpper && addNumber && addSpecail) {
-    regex =
-      /^(?=.*[A-Z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (number) {
-    regex = /^(?=.*[0-9]).{8,128}$/;
-  } else if (number && addSpecail) {
-    regex =
-      /^(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  } else if (addSpecail) {
-    regex = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{8,128}$/;
-  }
+  // var regex;
+  // if (addLower) {
+  //   regex = /^(?=.*[a-z]).{8,128}$/;
+  // } else if (addLower && addUpper) {
+  //   regex = /^(?=.*[a-z])(?=.*[A-Z]).{8,128}$/;
+  // } else if (addLower && addUpper && addNumber) {
+  //   regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,128}$/;
+  // } else if (addLower && addUpper && addSpecail) {
+  //   regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addLower && addUpper && addNumber && addSpecail) {
+  //   regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addLower && addNumber) {
+  //   regex = /^(?=.*[a-z])(?=.*[0-9]).{8,128}$/;
+  // } else if (addLower && addNumber && addSpecail) {
+  //   regex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addLower && addSpecail) {
+  //   regex = /^(?=.*[a-z])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addUpper) {
+  //   regex = /^(?=.*[A-Z]).{8,128}$/;
+  // } else if (addUpper && addNumber) {
+  //   regex = /^(?=.*[A-Z])(?=.*[0-9]).{8,128}$/;
+  // } else if (addUpper && addSpecail) {
+  //   regex = /^(?=.*[A-Z])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addUpper && addNumber && addSpecail) {
+  //   regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (number) {
+  //   regex = /^(?=.*[0-9]).{8,128}$/;
+  // } else if (number && addSpecail) {
+  //   regex = /^(?=.*[0-9])(?=.*[@#$%^&*()]).{8,128}$/;
+  // } else if (addSpecail) {
+  //   regex = /^(?=.*[@#$%^&*()]).{8,128}$/;
+  // }
 
   // loop until get password criteria is true
-  do
-    for (var i = 0; i < passwordLength; i++) {
-      randomNumber = Math.floor(Math.random() * passwordString.length);
-      getPassword += passwordString.substring(randomNumber, randomNumber + 1);
-      // getPassword += passwordString.charAt(randomNumber);
-    }
-  while (!regex.test(getPassword));
+  // do
+  for (var i = 0; i < passwordLength; i++) {
+    randomNumber = Math.floor(Math.random() * passwordString.length);
+    // getPassword += passwordString.substring(randomNumber, randomNumber + 1);
+    getPassword += passwordString.charAt(randomNumber);
+  }
+  // while (!regex.test(getPassword));
   return getPassword;
 }
 
